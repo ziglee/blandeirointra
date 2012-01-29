@@ -7,7 +7,7 @@ class SecUser {
     String nome
 
     static constraints = {
-        password blank: false, password: true, maxSize: 30
+        password blank: false, nullable: false, password: true, maxSize: 30
         email blank: false, nullable: false, email: true, unique: true, maxSize: 50
         nome blank: false, nullable: false, maxSize: 50
     }
