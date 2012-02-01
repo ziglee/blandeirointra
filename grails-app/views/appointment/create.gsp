@@ -5,6 +5,7 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'appointment.label', default: 'Appointment')}" />
         <title><g:message code="default.create.label" args="[entityName]" /></title>
+        <script src='${resource(dir:"js", file:"appointment.js")}'></script>
     </head>
     <body>
         <div class="nav">
@@ -38,7 +39,7 @@
                                     <label for="empreendimento"><g:message code="appointment.empreendimento.label" default="Empreendimento" />:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: appointmentInstance, field: 'empreendimento', 'errors')}">
-                                    <g:select id="empreendimento" name="empreendimento.id" from="${br.com.borgeslandeiro.intranet.Building.list()}" optionKey="id" value="${appointmentInstance?.empreendimento?.id}"  />
+                                    <g:select id="empreendimento" name="empreendimento.id" noSelection="['-1': 'Selecione...']" from="${br.com.borgeslandeiro.intranet.Building.list()}" optionKey="id" value="${appointmentInstance?.empreendimento?.id}"  />
                                 </td>
                             </tr>
                             <tr class="prop">
@@ -46,7 +47,7 @@
                                     <label for="torre"><g:message code="appointment.torre.label" default="Torre" />:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: appointmentInstance, field: 'torre', 'errors')}">
-                                    <g:textField name="torre" maxlength="50" value="${appointmentInstance?.torre}" />
+                                    <g:select name="torre" id="torre" value="${appointmentInstance?.torre}" from="${appointmentInstance?.empreendimento?.torres}" />
                                 </td>
                             </tr>
                             <tr class="prop">

@@ -1,5 +1,7 @@
 package br.com.borgeslandeiro.intranet
 
+import grails.converters.JSON
+
 class BuildingController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
@@ -105,5 +107,13 @@ class BuildingController {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'building.label', default: 'Building'), params.id])}"
             redirect(action: "list")
         }
+    }
+
+    def listTorres = {
+        def building = Building.get(params.id)
+        if (building)
+            render building.torres as JSON
+        else
+            render new ArrayList<String>() as JSON
     }
 }
