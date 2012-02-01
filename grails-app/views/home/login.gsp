@@ -1,6 +1,12 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
+    <title>Login</title>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#email').focus();
+        });
+    </script>
 </head>
 <body>
 <div class="wrapper">

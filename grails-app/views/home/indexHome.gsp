@@ -8,8 +8,8 @@
     <body>
         <ul>
             <g:if test="${session.user}">
-                <li>Empreendimento</li>
-                <li>Minha agenda</li>
+                <li><g:link controller="building" action="index">Empreendimento</g:link></li>
+                <li><g:link controller="appointment" action="index">Minha agenda</g:link></li>
                 <li><g:link controller="secUser" action="index">Cadastro de usuários</g:link></li>
                 <li><g:link controller="home" action="logout">Logout</g:link></li>
             </g:if>

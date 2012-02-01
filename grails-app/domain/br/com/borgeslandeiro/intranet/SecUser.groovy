@@ -21,6 +21,6 @@ class SecUser {
     }
 
     String toString(){
-        email
+        nome
     }
 }

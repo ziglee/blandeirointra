@@ -1,10 +1,10 @@
 
-<%@ page import="br.com.borgeslandeiro.intranet.SecUser" %>
+<%@ page import="br.com.borgeslandeiro.intranet.Building" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'secUser.label', default: 'SecUser')}" />
+        <g:set var="entityName" value="${message(code: 'building.label', default: 'Building')}" />
         <title><g:message code="default.list.label" args="[entityName]" /></title>
     </head>
     <body>
@@ -13,7 +13,7 @@
             <span class="menuButton"><g:link class="create" action="create">Novo</g:link></span>
         </div>
         <div class="body">
-            <h1>Lista de Usuários</h1>
+            <h1>Lista de empreendimentos</h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -21,24 +21,24 @@
                 <table>
                     <thead>
                         <tr>
-                            <g:sortableColumn property="id" title="${message(code: 'secUser.id.label', default: 'Id')}" />
-                            <g:sortableColumn property="email" title="${message(code: 'secUser.email.label', default: 'Email')}" />
-                            <g:sortableColumn property="nome" title="${message(code: 'secUser.nome.label', default: 'Nome')}" />
+                            <g:sortableColumn property="id" title="${message(code: 'building.id.label', default: 'Id')}" />
+                            <g:sortableColumn property="nome" title="${message(code: 'building.nome.label', default: 'Nome')}" />
+                            <th><g:message code="building.responsavel.label" default="Responsavel" /></th>
                         </tr>
                     </thead>
                     <tbody>
-                    <g:each in="${secUserInstanceList}" status="i" var="secUserInstance">
+                    <g:each in="${buildingInstanceList}" status="i" var="buildingInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-                            <td><g:link action="show" id="${secUserInstance.id}">${fieldValue(bean: secUserInstance, field: "id")}</g:link></td>
-                            <td>${fieldValue(bean: secUserInstance, field: "email")}</td>
-                            <td>${fieldValue(bean: secUserInstance, field: "nome")}</td>
+                            <td><g:link action="show" id="${buildingInstance.id}">${fieldValue(bean: buildingInstance, field: "id")}</g:link></td>
+                            <td>${fieldValue(bean: buildingInstance, field: "nome")}</td>
+                            <td>${fieldValue(bean: buildingInstance, field: "responsavel")}</td>
                         </tr>
                     </g:each>
                     </tbody>
                 </table>
             </div>
             <div class="paginateButtons">
-                <g:paginate total="${secUserInstanceTotal}" />
+                <g:paginate total="${buildingInstanceTotal}" />
             </div>
         </div>
     </body>
