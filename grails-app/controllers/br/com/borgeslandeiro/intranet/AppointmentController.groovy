@@ -5,7 +5,7 @@ class AppointmentController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index = {
-        redirect(action: "list", params: params)
+        redirect(action: "agenda", params: params)
     }
 
     def list = {
@@ -35,7 +35,7 @@ class AppointmentController {
         def appointmentInstance = Appointment.get(params.id)
         if (!appointmentInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'appointment.label', default: 'Appointment'), params.id])}"
-            redirect(action: "list")
+            redirect(action: "agenda")
         }
         else {
             [appointmentInstance: appointmentInstance]
@@ -46,7 +46,7 @@ class AppointmentController {
         def appointmentInstance = Appointment.get(params.id)
         if (!appointmentInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'appointment.label', default: 'Appointment'), params.id])}"
-            redirect(action: "list")
+            redirect(action: "agenda")
         }
         else {
             return [appointmentInstance: appointmentInstance]
@@ -75,7 +75,7 @@ class AppointmentController {
         }
         else {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'appointment.label', default: 'Appointment'), params.id])}"
-            redirect(action: "list")
+            redirect(action: "agenda")
         }
     }
 
@@ -94,7 +94,53 @@ class AppointmentController {
         }
         else {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'appointment.label', default: 'Appointment'), params.id])}"
-            redirect(action: "list")
+            redirect(action: "agenda")
         }
+    }
+
+    def agenda = {
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+
+        def hqlParams = ['responsavelId' : session.user.id]
+        def hql = 'select a from Appointment as a where a.empreendimento.responsavel.id = :responsavelId'
+
+        if (params.empreendimento) {
+            hql += " and a.empreendimento.id = :empreendimento"
+            hqlParams.put 'empreendimento', params.long('empreendimento')
+        }
+
+        if (params.fase) {
+            hql += " and a.fase = :fase"
+            hqlParams.put 'fase', AppointmentPhase.forNome(params.fase)
+        }
+
+        if (params.sort) {
+            hql += " order by ${params.sort} "
+        } else {
+            hql += " order by a.empreendimento.nome "
+        }
+
+        if (params.order)
+            hql += params.order
+
+        def lista = Appointment.executeQuery(hql, hqlParams, params)
+        def count = Appointment.executeQuery(hql, hqlParams).size()
+
+        def empreendimentos = Building.findAllByResponsavel(session.user).sort{it.nome}
+        def fases = AppointmentPhase.values()
+
+        [appointmentInstanceList: lista, appointmentInstanceTotal: count, empreendimentos: empreendimentos, fases: fases]
+    }
+
+    def editDataPrevista = {
+
+    }
+
+    def updateDataPrevista = {
+
+    }
+
+    def confirmar = {
+
     }
 }

@@ -111,8 +111,8 @@ class BuildingController {
 
     def listTorres = {
         def building = Building.get(params.id)
-        if (building)
-            render building.torres as JSON
+        if (building && building.torres)
+            render building.torres.sort() as JSON
         else
             render new ArrayList<String>() as JSON
     }

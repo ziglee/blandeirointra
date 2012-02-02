@@ -13,3 +13,4 @@ web-app/WEB-INF/classes
 devDB.properties
 .DS_Store
 \"/
+devDB.*
