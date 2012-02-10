@@ -12,9 +12,9 @@ html * {
 }
 
 body {
-    background: #fff;
+    background: #333 url(../images/topo.jpg);
     color: #333;
-    font: 11px verdana, arial, helvetica, sans-serif;
+    font: 12px verdana, arial, helvetica, sans-serif;
 }
 #grailsLogo {
 	padding:20px;
@@ -24,13 +24,6 @@ a:link, a:visited, a:hover {
     color: #666;
     font-weight: bold;
     text-decoration: none;
-}
-
-h1 {
-    color: #48802c;
-    font-weight: normal;
-    font-size: 16px;
-    margin: .8em 0 .3em 0;
 }
 
 ul {
@@ -58,8 +51,8 @@ input:focus, select:focus, textarea:focus {
 }
 
 .body {
-    float: left;
-    margin: 0 15px 10px 15px;
+    margin: 0px auto;
+	width: 600px; 
 }
 
 /* NAVIGATION MENU */
@@ -67,43 +60,46 @@ input:focus, select:focus, textarea:focus {
 .nav {
     background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
     border: 1px solid #ccc;
-    border-style: solid none solid none;
     margin-top: 5px;
-    padding: 7px 12px;
+	margin-bottom: 20px;
+    padding: 20px 0px 0px 0px;
+	border-radius:5px 5px 5px 5px;
+	height:40px;
+	width: 600px;
 }
 
 .menuButton {
-    font-size: 10px;
-    padding: 0 5px;
+    font-size: 14px;
+    padding: 10px 5px;
 }
 .menuButton a {
     color: #333;
-    padding: 4px 6px;
+    padding: 16px 16px;
 }
 .menuButton a.home {
     background: url(../images/skin/house.png) center left no-repeat;
     color: #333;
-    padding-left: 25px;
+    padding-left: 40px;
 }
 .menuButton a.list {
     background: url(../images/skin/database_table.png) center left no-repeat;
     color: #333;
-    padding-left: 25px;
+    padding-left: 40px;
 }
 .menuButton a.create {
     background: url(../images/skin/database_add.png) center left no-repeat;
     color: #333;
-    padding-left: 25px;
+    padding-left: 40px;
 }
 
 /* MESSAGES AND ERRORS */
 
 .message {
     background: #f3f8fc url(../images/skin/information.png) 8px 50% no-repeat;
-    border: 1px solid #b2d1ff;
-    color: #006dba;
+    border: 1px solid #BB221B;
+    color: #BB221B;
     margin: 10px 0 5px 0;
-    padding: 5px 5px 5px 30px
+    padding: 15px 5px 15px 30px
 }
 
 div.errors {
@@ -111,7 +107,7 @@ div.errors {
     border: 1px solid red;
     color: #cc0000;
     margin: 10px 0 5px 0;
-    padding: 5px 0 5px 0;
+    padding: 15px 0 15px 0;
 }
 div.errors ul {
     list-style: none;
@@ -119,7 +115,7 @@ div.errors ul {
 }
 div.errors li {
 	background: url(../images/skin/exclamation.png) 8px 0% no-repeat;
-    line-height: 16px;
+    line-height: 25px;
     padding-left: 30px;
 }
 
@@ -136,8 +132,9 @@ td.errors textarea {
 /* TABLES */
 
 table {
-    border: 1px solid #ccc;
-    width: 100%
+    border: 1px solid #DDD;
+	margin-top:10px;
+	width:100%;
 }
 tr {
     border: 0;
@@ -150,15 +147,17 @@ td, th {
     vertical-align: top;
 }
 th {
-    background: #fff url(../images/skin/shadow.jpg);
-    color: #666;
+    background: #999;
+    color: #FFF;
     font-size: 11px;
     font-weight: bold;
-    line-height: 17px;
-    padding: 2px 6px;
+    line-height: 25px;
+    padding: 6px 6px;
+	border-right:1px solid #CCC;
 }
+
 th a:link, th a:visited, th a:hover {
-    color: #333;
+    color: #FFF;
     display: block;
     font-size: 10px;
     text-decoration: none;
@@ -198,12 +197,13 @@ th.desc a {
 
 .paginateButtons {
     background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
-    border: 1px solid #ccc;
-    border-top: 0;
+    border: 1px solid #ccc;    
     color: #666;
     font-size: 10px;
     overflow: hidden;
     padding: 10px 3px;
+	border-radius:5px 5px 5px 5px;
+	margin-top:10px; 
 }
 .paginateButtons a {
     background: #fff;
@@ -227,7 +227,7 @@ th.desc a {
     padding: 5px;
 }
 .prop .name {
-    text-align: left;
+    text-align: right;
     width: 15%;
     white-space: nowrap;
 }
@@ -246,6 +246,7 @@ th.desc a {
     margin-top: 5px;
     overflow: hidden;
     padding: 0;
+	border-radius: 3px 3px 3px 3px;	
 }
 
 .buttons input {
@@ -253,21 +254,74 @@ th.desc a {
     border: 0;
     color: #333;
     cursor: pointer;
-    font-size: 10px;
+    font-size: 14px;
     font-weight: bold;
     margin-left: 3px;
+	margin-top:4px; 
     overflow: visible;
-    padding: 2px 6px;
+    padding: 16px;	
 }
 .buttons input.delete {
     background: transparent url(../images/skin/database_delete.png) 5px 50% no-repeat;
-    padding-left: 28px;
+    padding-left: 40px;
 }
 .buttons input.edit {
     background: transparent url(../images/skin/database_edit.png) 5px 50% no-repeat;
-    padding-left: 28px;
+    padding-left: 40px;
 }
 .buttons input.save {
     background: transparent url(../images/skin/database_save.png) 5px 50% no-repeat;
-    padding-left: 28px;
+    padding-left: 40px;
 }
+
+/* CUSTOM */
+#margem{ width:800px; height:100%; margin:0px auto; }
+.box { border-radius:5px 5px 5px 5px; box-shadow:0 3px 3px rgba(0, 0, 0, 0.4); background:#f2f2f2; padding:10px; -moz-box-shadow:0 3px 3px rgba(0, 0, 0, 0.4); -webkit-box-shadow:0 3px 3px rgba(0, 0, 0, 0.4); overflow:auto;}
+h1,h2,h3{ margin:0px; display:inline; }
+h1.t1{ color: #333; font:normal 35px/45px Georgia, "Times New Roman", Times, serif; text-shadow: 2px 2px 2px #FFF; }
+h1.t2{ color: #666; font:normal 28px/40px Tahoma, Geneva, sans-serif; text-shadow: 2px 2px 2px #333; text-shadow: 1px 1px 1px #FFF; }
+h1.t3{ color: #333; font:normal 16px/20px Georgia, "Times New Roman", Times, serif; text-shadow: 2px 2px 2px #333; text-shadow: 1px 1px 1px #FFF; font-style:italic; }
+h2.t4{ color: #333; font: 12px/16px Georgia; margin-top: 16px; padding: 0; text-transform: none; text-shadow: 1px 1px 1px #FFFFFF; font-style:italic; }
+h1.t5 { color: #010101; font: 24px/28px Georgia; margin-top: 16px; padding: 0; text-transform: none; text-shadow: 1px 1px 1px #FFFFFF; }
+h1.titulo { color: #010101; font: 18px/22px Georgia; margin-top: 16px; padding: 0; text-transform: none; text-shadow: 1px 1px 1px #FFFFFF; }
+p.titulo { color: #000000; font: italic 12px/15px Georgia,serif; }
+
+.btn01, .btn02 { background: url("../images/btn-01.png") repeat-x scroll 0 0 #FFAA22;  border-radius: 5px 5px 5px 5px;  border:medium none;  color: #FFF !important;  cursor: pointer;
+  font: bold 16px Helvetica Neue,Arial,Sans-serif;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #000;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);  
+  padding: 5px 25px 5px 25px;
+}
+
+.btn02 { font: bold 14px Helvetica Neue,Arial,Sans-serif;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #000;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);  
+  padding: 5px 20px 5px 20px;
+}
+
+input.signin { border: 1px solid #CCCCCC; border-radius: 3px 3px 3px 3px; -moz-transition: opacity 1s ease 0s;  background-color: white;  
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2) inset;
+  color: #666; font:normal 11px Tahoma, Geneva, sans-serif;
+  opacity: 0.8;
+  padding:8px 6px;
+  margin:6px 2px; 
+}
+label{ font-weight:bold; }
+ul.menu{ list-style: none; margin-left:90px; }
+ul.menu li{ border:1px solid #CCC; padding: 10px; margin:0px 3px 5px 0px; float:left; border-radius: 5px; background:#FFF;}
+div.list{ margin-top:20px; }
+div.filter{ margin: 0px 0px 20px 0px; background:#DDD; padding:6px; border-radius:5px 5px 5px 5px; }
+.dialog table{ background:#FFF; }
+.dialog table input, .dialog table select{ 
+  border: 1px solid #CCCCCC; border-radius: 3px 3px 3px 3px; -moz-transition: opacity 1s ease 0s;  background-color: white;    
+  color: #666; font:normal 11px Tahoma, Geneva, sans-serif;  
+  padding:8px 6px;
+  margin:3px 0px; 
+ }
+ input.large{ width:400px; } 
+ select.large{ width:410px; } 
+textarea.large{ width: 400px; }
