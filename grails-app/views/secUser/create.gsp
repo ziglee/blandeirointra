@@ -32,7 +32,7 @@
                                     <label for="password"><g:message code="secUser.password.label" default="Password" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: secUserInstance, field: 'password', 'errors')}">
-                                    <g:passwordField name="password" maxlength="30" value="${secUserInstance?.password}" />
+                                    <g:passwordField name="password" maxlength="30" value="${secUserInstance?.password}"  class="large"/>
                                 </td>
                             </tr>
                             <tr class="prop">
@@ -40,7 +40,7 @@
                                     <label for="email"><g:message code="secUser.email.label" default="Email" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: secUserInstance, field: 'email', 'errors')}">
-                                    <g:textField name="email" maxlength="50" value="${secUserInstance?.email}" />
+                                    <g:textField name="email" maxlength="50" value="${secUserInstance?.email}"  class="large"/>
                                 </td>
                             </tr>
                             <tr class="prop">
@@ -48,7 +48,7 @@
                                     <label for="nome"><g:message code="secUser.nome.label" default="Nome" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: secUserInstance, field: 'nome', 'errors')}">
-                                    <g:textField name="nome" maxlength="50" value="${secUserInstance?.nome}" />
+                                    <g:textField name="nome" maxlength="50" value="${secUserInstance?.nome}"  class="large"/>
                                 </td>
                             </tr>
                         </tbody>

@@ -29,27 +29,26 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="nome"><g:message code="building.nome.label" default="Nome" /></label>
+                                    <label for="nome"><g:message code="building.nome.label" default="Nome" />:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: buildingInstance, field: 'nome', 'errors')}">
-                                    <g:textField name="nome" maxlength="100" value="${buildingInstance?.nome}" />
+                                    <g:textField name="nome" maxlength="100" value="${buildingInstance?.nome}" class="large"/>
                                 </td>
                             </tr>
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="responsavel"><g:message code="building.responsavel.label" default="Responsável" /></label>
+                                    <label for="responsavel"><g:message code="building.responsavel.label" default="Responsável" />:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: buildingInstance, field: 'responsavel', 'errors')}">
-                                    <g:select id="responsavel" name="responsavel.id" from="${br.com.borgeslandeiro.intranet.SecUser.list()}" optionKey="id" value="${buildingInstance?.responsavel?.id}"  />
+                                    <g:select id="responsavel" name="responsavel.id" from="${br.com.borgeslandeiro.intranet.SecUser.list()}" optionKey="id" value="${buildingInstance?.responsavel?.id}" class="large" />
                                 </td>
                             </tr>
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label><g:message code="building.torres.label" default="Torres" />:</label>
+									<input type="button" id="torre-add" value=" + " class="btn02"/>
                                 </td>
-                                <td valign="top" id="torres-td" class="value ${hasErrors(bean: buildingInstance, field: 'torres', 'errors')}">
-                                    <input type="button" id="torre-add" value="+"/>
-                                    <br/>
+                                <td valign="top" id="torres-td" class="value ${hasErrors(bean: buildingInstance, field: 'torres', 'errors')}">                                                                       
                                     <g:each in="${buildingInstance.torres}" var="torre" status="i">
                                         <input type="text" name="torres" id="torres-${i}" class="torres-text" value="${torre}"/><input type="button" id="torres-${i}-del" class="torres-del-btn" value="-" onclick="removerTorre(${i});"/>
                                     </g:each>

@@ -15,8 +15,10 @@
         <div class="filter">
             <g:form action="agenda">
                 Empreendimento: <g:select name="empreendimento" noSelection="['': 'Selecione...']" from="${empreendimentos}" optionKey="id" value="${params.empreendimento}"  />
-                Fase: <g:select name="fase" noSelection="['': 'Selecione...']" from="${fases}" optionKey="nome" optionValue="nome" value="${params.fase}"  />
-                <g:submitButton name="Filtrar" />
+                &nbsp;&nbsp;&nbsp;
+				Fase: <g:select name="fase" noSelection="['': 'Selecione...']" from="${fases}" optionKey="nome" optionValue="nome" value="${params.fase}"  />
+                &nbsp;&nbsp;&nbsp;
+				<g:submitButton name="Filtrar" class="btn02"/>
             </g:form>
         </div>
         <div class="body">

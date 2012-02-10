@@ -6,16 +6,30 @@
     <meta name="layout" content="main" />
     </head>
     <body>
-        <ul>
-            <g:if test="${session.user}">
-                <li><g:link controller="building" action="index">Empreendimento</g:link></li>
-                <li><g:link controller="appointment" action="agenda">Minha agenda</g:link></li>
-                <li><g:link controller="secUser" action="index">Cadastro de usuários</g:link></li>
-                <li><g:link controller="home" action="logout">Logout</g:link></li>
-            </g:if>
-            <g:else>
-                <li><g:link controller="home" action="login">Entrar</g:link></li>
-            </g:else>
-        </ul>
+		<h1 class="t1">Sistema de Agendamentos</h1>
+		<br/><br/><br/><br/>
+		<g:if test="${session.user}">
+			<ul class="menu">
+				<li>
+					<img src="${resource(dir:'images',file:'key.png')}" alt="" align="absmiddle"/>
+					<g:link controller="building" action="index">Empreendimento</g:link>
+				</li>
+				<li>
+					<img src="${resource(dir:'images',file:'calendar.png')}" alt="" align="absmiddle"/>
+					<g:link controller="appointment" action="agenda">Minha agenda</g:link>
+				</li>
+				<li>
+					<img src="${resource(dir:'images',file:'man.png')}" alt="" align="absmiddle"/>
+					<g:link controller="secUser" action="index">Cadastro de usuários</g:link>
+				</li>
+				<li style="border:none;background:none">					
+					<g:link controller="home" action="logout" class="btn01">Logout</g:link>
+				</li>
+			</ul>
+			<br/><br/><br/>
+		</g:if>
+		<g:else>
+			<g:link controller="home" action="login" class="btn01">Entrar</g:link>
+		</g:else>        
     </body>
 </html>
