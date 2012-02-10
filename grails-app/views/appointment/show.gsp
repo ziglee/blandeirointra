@@ -10,7 +10,7 @@
     <body>
         <div class="nav">
             <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"Início</a></span>
-            <span class="menuButton"><g:link class="list" action="list">Listagem</g:link></span>
+            <span class="menuButton"><g:link class="list" action="agenda">Listagem</g:link></span>
             <span class="menuButton"><g:link class="create" action="create">Novo</g:link></span>
         </div>
         <div class="body">

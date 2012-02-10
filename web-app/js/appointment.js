@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 function retrieveTorres() {
     $.ajax({
-        url: '/blandeirointra/building/listTorres/' + $(this).val(),
+        url: '/building/listTorres/' + $(this).val(),
         dataType: 'json',
         success: function(doc) {
             $('#torre').empty();

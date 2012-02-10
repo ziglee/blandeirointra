@@ -20,6 +20,7 @@ class BootStrap {
     }
 
     def initData() {
-        def admin = SecUser.findByEmail("admin@blandeiro.com.br") ?: new SecUser(nome: 'Admin', email: 'admin@blandeiro.com.br', password: "123456").save(flush: true, failOnError: true)
+        def admin = SecUser.findByEmail("admin@blandeiro.com.br") ?: new SecUser(nome: 'Admin', email: 'admin@blandeiro.com.br', password: "123456")
+        admin.save(flush: true, failOnError: true)
     }
 }

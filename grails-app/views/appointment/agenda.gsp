@@ -33,7 +33,6 @@
                             <g:sortableColumn property="cliente" title="${message(code: 'appointment.cliente.label', default: 'Cliente')}" />
                             <g:sortableColumn property="telefone" title="${message(code: 'appointment.telefone.label', default: 'Contato')}" />
                             <g:sortableColumn property="telefone" title="${message(code: 'appointment.dataPrevista.label', default: 'Data')}" />
-                            <g:sortableColumn property="telefone" title="${message(code: 'appointment.fase.label', default: 'Fase')}" />
                             <th></th>
                         </tr>
                     </thead>
@@ -46,7 +45,6 @@
                             <td>${fieldValue(bean: appointmentInstance, field: "cliente")}</td>
                             <td>${fieldValue(bean: appointmentInstance, field: "telefone")}</td>
                             <td><g:formatDate date="${appointmentInstance?.dataPrevista}" format="dd/MM/yyyy"/></td>
-                            <td>${fieldValue(bean: appointmentInstance, field: "fase")}</td>
                             <td>
                                 <g:if test="${appointmentInstance.fase.equals(AppointmentPhase.SOLICITADO)}">
                                     <a href="#" class="confirmar-btn" id="confirmar-btn-${appointmentInstance.id}">Confirmar</a>

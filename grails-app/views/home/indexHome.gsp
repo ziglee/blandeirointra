@@ -11,7 +11,7 @@
                 <li><g:link controller="building" action="index">Empreendimento</g:link></li>
                 <li><g:link controller="appointment" action="agenda">Minha agenda</g:link></li>
                 <li><g:link controller="secUser" action="index">Cadastro de usuários</g:link></li>
-                <li><g:link controller="home" action="logout">Logout</g:link></li>
+                <li><g:link controller="home" action="logout">Sair</g:link></li>
             </g:if>
             <g:else>
                 <li><g:link controller="home" action="login">Entrar</g:link></li>
