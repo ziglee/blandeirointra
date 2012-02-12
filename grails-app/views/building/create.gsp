@@ -8,7 +8,7 @@
         <script src='${resource(dir:"js", file:"building.js")}'></script>
     </head>
     <body>
-        <div class="nav">
+        <div class="topnav">
             <span class="menuButton"><a class="home" href="${createLink(uri: '/')}">Início</a></span>
             <span class="menuButton"><g:link class="list" action="list">Listagem</g:link></span>
         </div>

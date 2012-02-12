@@ -8,7 +8,7 @@
         <title><g:message code="default.list.label" args="[entityName]" /></title>
     </head>
     <body>
-        <div class="nav">
+        <div class="topnav">
             <span class="menuButton"><a class="home" href="${createLink(uri: '/')}">Início</a></span>
             <span class="menuButton"><g:link class="create" action="create">Novo</g:link></span>
         </div>
@@ -50,7 +50,7 @@
                             <td>
                                 <g:if test="${appointmentInstance.fase.equals(AppointmentPhase.SOLICITADO)}">
                                     <a href="#" class="confirmar-btn" id="confirmar-btn-${appointmentInstance.id}">Confirmar</a>
-                                    <g:link action="editDataPrevista" class="alterar-btn" id="${appointmentInstance.id}" elementId="confirmar-btn-${appointmentInstance.id}">Alterar</g:link>
+                                    <g:link action="edit" class="alterar-btn" id="${appointmentInstance.id}" elementId="confirmar-btn-${appointmentInstance.id}">Alterar</g:link>
                                 </g:if>
                                 <g:elseif test="${appointmentInstance.fase.equals(AppointmentPhase.CONFIRMADO)}">
                                     <a href="#" class="resolver-btn" id="resolver-btn-${appointmentInstance.id}">Confirmado</a>

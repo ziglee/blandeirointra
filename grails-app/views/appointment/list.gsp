@@ -8,7 +8,7 @@
         <title><g:message code="default.list.label" args="[entityName]" /></title>
     </head>
     <body>
-        <div class="nav">
+        <div class="topnav">
             <span class="menuButton"><a class="home" href="${createLink(uri: '/')}">Início</a></span>
             <span class="menuButton"><g:link class="create" action="create">Novo</g:link></span>
         </div>

@@ -5,10 +5,11 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'appointment.label', default: 'Appointment')}" />
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
+        <calendar:resources lang="br" theme="tiger"/>
         <script src='${resource(dir:"js", file:"appointment.js")}'></script>
     </head>
     <body>
-        <div class="nav">
+        <div class="topnav">
             <span class="menuButton"><a class="home" href="${createLink(uri: '/')}">Início</a></span>
             <span class="menuButton"><g:link class="list" action="agenda">Listagem</g:link></span>
             <span class="menuButton"><g:link class="create" action="create">Novo</g:link></span>
@@ -90,7 +91,7 @@
                                   <label for="dataPrevista"><g:message code="appointment.dataPrevista.label" default="Data Prevista" />:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: appointmentInstance, field: 'dataPrevista', 'errors')}">
-                                    <g:datePicker name="dataPrevista" precision="day" value="${appointmentInstance?.dataPrevista}"  />
+                                    <calendar:datePicker name="dataPrevista" defaultValue="${appointmentInstance?.dataPrevista}" dateFormat="%d/%m/%Y"/>
                                 </td>
                             </tr>
                             <tr class="prop">

@@ -132,14 +132,6 @@ class AppointmentController {
         [appointmentInstanceList: lista, appointmentInstanceTotal: count, empreendimentos: empreendimentos, fases: fases]
     }
 
-    def editDataPrevista = {
-
-    }
-
-    def updateDataPrevista = {
-
-    }
-
     def confirmar = {
 
     }

@@ -8,8 +8,8 @@
         <title><g:message code="default.show.label" args="[entityName]" /></title>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"Início</a></span>
+        <div class="topnav">
+            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}">Início</a></span>
             <span class="menuButton"><g:link class="list" action="agenda">Listagem</g:link></span>
             <span class="menuButton"><g:link class="create" action="create">Novo</g:link></span>
         </div>
