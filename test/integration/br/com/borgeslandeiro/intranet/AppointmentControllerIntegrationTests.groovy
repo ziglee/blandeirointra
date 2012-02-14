@@ -2,8 +2,9 @@ package br.com.borgeslandeiro.intranet
 
 import org.junit.Before
 import org.junit.Test
+import grails.test.GrailsUnitTestCase
 
-class AppointmentControllerIntegrationTests extends GroovyTestCase {
+class AppointmentControllerIntegrationTests extends GrailsUnitTestCase {
 
     @Before void before() {
         def user1 = new SecUser(password: '123456', email: 'user1@teste.com', nome: 'user1').save(flush: true, failOnError: true)
@@ -115,5 +116,88 @@ class AppointmentControllerIntegrationTests extends GroovyTestCase {
 
         assertEquals 1, result.appointmentInstanceList.size()
         assertEquals AppointmentPhase.RESOLVIDO, result.appointmentInstanceList.get(0).fase
+    }
+
+    @Test void confirmar_agendamento_joao() {
+        def appointment = Appointment.findByCliente('João')
+        assertEquals AppointmentPhase.SOLICITADO, appointment.fase
+
+        def c = new AppointmentController()
+        c.params.id = appointment.id
+        c.confirmar()
+
+        appointment = Appointment.findByCliente('João').fase
+        assertEquals AppointmentPhase.CONFIRMADO, appointment
+    }
+
+    @Test void resolver_agendamento_joao() {
+        def appointment = Appointment.findByCliente('João')
+        assertEquals AppointmentPhase.SOLICITADO, appointment.fase
+
+        def c = new AppointmentController()
+        c.params.id = appointment.id
+        c.resolver()
+
+        appointment = Appointment.findByCliente('João').fase
+        assertEquals AppointmentPhase.RESOLVIDO, appointment
+    }
+
+    @Test void create_open() {
+        def c = new AppointmentController()
+        def result = c.createOpen()
+        assertNotNull result.appointmentInstance
+    }
+
+    @Test void save_open_com_email() {
+        def mailerService = new MailerService() {
+            def emailEnviado = false
+            def enviarEmail (Appointment app){
+                emailEnviado = true
+            }
+        }
+
+        def c = new AppointmentController()
+        c.blandeiroMailerService = mailerService
+        c.params.cliente = 'Teste'
+        c.params.email = 'teste@teste.com.br'
+        c.params.unidade = '201'
+        c.params.telefone = '43214321'
+        c.params.put 'dataPrevista_year', '2013'
+        c.params.put 'dataPrevista_month', '12'
+        c.params.put 'dataPrevista_day', '30'
+        c.params.put 'empreendimento.id', Building.findByNome('Caimi').id
+        c.saveOpen()
+
+        assertTrue mailerService.emailEnviado
+    }
+
+    @Test void save_open_sem_email() {
+        def mailerService = new MailerService() {
+            def emailEnviado = false
+            def enviarEmail (Appointment app){
+                emailEnviado = true
+            }
+        }
+
+        def c = new AppointmentController()
+        c.blandeiroMailerService = mailerService
+        c.params.cliente = 'Teste'
+        c.params.email = null
+        c.params.unidade = '201'
+        c.params.telefone = '43214321'
+        c.params.put 'dataPrevista_year', '2013'
+        c.params.put 'dataPrevista_month', '12'
+        c.params.put 'dataPrevista_day', '30'
+        c.params.put 'empreendimento.id', Building.findByNome('Caimi').id
+        c.saveOpen()
+
+        assertFalse mailerService.emailEnviado
+    }
+
+    @Test void show_open() {
+        def c = new AppointmentController()
+        c.params.id = Appointment.findByCliente('João').id
+        def result = c.showOpen()
+        assertNotNull result
     }
 }

@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'appointment.label', default: 'Appointment')}" />
+        <g:set var="entityName" value="Agendamento" />
         <title><g:message code="default.list.label" args="[entityName]" /></title>
     </head>
     <body>
@@ -30,18 +30,17 @@
                 <table>
                     <thead>
                         <tr>
-                            <g:sortableColumn property="id" title="${message(code: 'appointment.id.label', default: 'Id')}" />
-                            <g:sortableColumn property="cliente" title="${message(code: 'appointment.empreendimento.label', default: 'Unidade')}" />
-                            <g:sortableColumn property="cliente" title="${message(code: 'appointment.cliente.label', default: 'Cliente')}" />
-                            <g:sortableColumn property="telefone" title="${message(code: 'appointment.telefone.label', default: 'Contato')}" />
-                            <g:sortableColumn property="telefone" title="${message(code: 'appointment.dataPrevista.label', default: 'Data')}" />
+                            <g:sortableColumn property="id" title="Id" />
+                            <g:sortableColumn property="cliente" title="Unidade" />
+                            <g:sortableColumn property="cliente" title="Proprietário" />
+                            <g:sortableColumn property="telefone" title="Contato" />
+                            <g:sortableColumn property="dataPrevista" title="Data" />
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                     <g:each in="${appointmentInstanceList}" status="i" var="appointmentInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-                        
                             <td><g:link action="show" id="${appointmentInstance.id}">${fieldValue(bean: appointmentInstance, field: "id")}</g:link></td>
                             <td>${fieldValue(bean: appointmentInstance, field: "empreendimento.nome")}</td>
                             <td>${fieldValue(bean: appointmentInstance, field: "cliente")}</td>
@@ -49,11 +48,11 @@
                             <td><g:formatDate date="${appointmentInstance?.dataPrevista}" format="dd/MM/yyyy"/></td>
                             <td>
                                 <g:if test="${appointmentInstance.fase.equals(AppointmentPhase.SOLICITADO)}">
-                                    <a href="#" class="confirmar-btn" id="confirmar-btn-${appointmentInstance.id}">Confirmar</a>
-                                    <g:link action="edit" class="alterar-btn" id="${appointmentInstance.id}" elementId="confirmar-btn-${appointmentInstance.id}">Alterar</g:link>
+                                    <g:link action="confirmar" class="confirmar-btn" id="${appointmentInstance.id}" elementId="confirmar-btn-${appointmentInstance.id}" onclick="return confirm('Deseja confirmar o agendamento');">Confirmar</g:link>
+                                    <g:link action="edit" class="alterar-btn" id="${appointmentInstance.id}" elementId="alterar-btn-${appointmentInstance.id}" >Alterar</g:link>
                                 </g:if>
                                 <g:elseif test="${appointmentInstance.fase.equals(AppointmentPhase.CONFIRMADO)}">
-                                    <a href="#" class="resolver-btn" id="resolver-btn-${appointmentInstance.id}">Confirmado</a>
+                                    <g:link action="resolver" class="resolver-btn" id="${appointmentInstance.id}" elementId="resolver-btn-${appointmentInstance.id}" onclick="return confirm('Deseja resolver o agendamento');">Confirmado</g:link>
                                 </g:elseif>
                                 <g:else>
                                     <a href="#" class="resolvido-btn">Resolvido</a>
