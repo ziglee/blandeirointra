@@ -1,5 +1,6 @@
 package br.com.borgeslandeiro.intranet
 
 public interface MailerService {
-    def enviarEmail(Appointment appointment)
+    def notificarResponsavel(Appointment appointment)
+    def notificarCliente(Appointment appointment)
 }

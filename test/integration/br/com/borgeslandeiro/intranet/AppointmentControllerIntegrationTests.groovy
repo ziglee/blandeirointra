@@ -6,7 +6,23 @@ import grails.test.GrailsUnitTestCase
 
 class AppointmentControllerIntegrationTests extends GrailsUnitTestCase {
 
+    def mailerService
+    def clienteNotificado = false
+    def responsavelNotificado = false
+
     @Before void before() {
+        clienteNotificado = false
+        responsavelNotificado = false
+
+        mailerService = new MailerService() {
+            def notificarResponsavel (Appointment app){
+                responsavelNotificado = true
+            }
+            def notificarCliente (Appointment app){
+                clienteNotificado = true
+            }
+        }
+
         def user1 = new SecUser(password: '123456', email: 'user1@teste.com', nome: 'user1').save(flush: true, failOnError: true)
         def user2 = new SecUser(password: '123456', email: 'user2@teste.com', nome: 'user2').save(flush: true, failOnError: true)
         new SecUser(password: '123456', email: 'user3@teste.com', nome: 'user3').save(flush: true, failOnError: true)
@@ -14,7 +30,7 @@ class AppointmentControllerIntegrationTests extends GrailsUnitTestCase {
         def buenaVista = new Building(nome: 'Buena Vista', responsavel: user1).save(flush: true, failOnError: true)
         def belaResidence = new Building(nome: 'Bela Residence', responsavel: user1, torres: ['A','B']).save(flush: true, failOnError: true)
         def caimi = new Building(nome: 'Caimi', responsavel: user2).save(flush: true, failOnError: true)
-        def helsinki = new Building(nome: 'Helsinki', responsavel: user2, torres: ['1','2']).save(flush: true, failOnError: true)
+        new Building(nome: 'Helsinki', responsavel: user2, torres: ['1','2']).save(flush: true, failOnError: true)
 
         new Appointment(cliente: 'João', dataPrevista: new GregorianCalendar(2012, Calendar.JANUARY, 22).time,
                 email: 'joao@a.com.br', empreendimento: buenaVista, fase: AppointmentPhase.SOLICITADO,
@@ -35,7 +51,7 @@ class AppointmentControllerIntegrationTests extends GrailsUnitTestCase {
                 email: 'joana@a.com.br', empreendimento: belaResidence, fase: AppointmentPhase.SOLICITADO,
                 telefone: '444', unidade: '202', torre: 'B').save(flush: true, failOnError: true)
         new Appointment(cliente: 'Pedro', dataPrevista: new GregorianCalendar(2011, Calendar.DECEMBER, 20).time,
-                email: 'pedro@a.com.br', empreendimento: caimi, fase: AppointmentPhase.SOLICITADO,
+                empreendimento: caimi, fase: AppointmentPhase.SOLICITADO,
                 telefone: '555', unidade: '301').save(flush: true, failOnError: true)
     }
 
@@ -124,10 +140,24 @@ class AppointmentControllerIntegrationTests extends GrailsUnitTestCase {
 
         def c = new AppointmentController()
         c.params.id = appointment.id
+        c.blandeiroMailerService = mailerService
         c.confirmar()
 
         appointment = Appointment.findByCliente('João').fase
         assertEquals AppointmentPhase.CONFIRMADO, appointment
+        assertTrue clienteNotificado
+    }
+
+    @Test void confirmar_sem_enviar_email_para_cliente() {
+        def appointment = Appointment.findByCliente('Pedro')
+        assertEquals AppointmentPhase.SOLICITADO, appointment.fase
+
+        def c = new AppointmentController()
+        c.params.id = appointment.id
+        c.blandeiroMailerService = mailerService
+        c.confirmar()
+
+        assertFalse clienteNotificado
     }
 
     @Test void resolver_agendamento_joao() {
@@ -148,14 +178,7 @@ class AppointmentControllerIntegrationTests extends GrailsUnitTestCase {
         assertNotNull result.appointmentInstance
     }
 
-    @Test void save_open_com_email() {
-        def mailerService = new MailerService() {
-            def emailEnviado = false
-            def enviarEmail (Appointment app){
-                emailEnviado = true
-            }
-        }
-
+    @Test void save_open_enviando_email_para_responsavel() {
         def c = new AppointmentController()
         c.blandeiroMailerService = mailerService
         c.params.cliente = 'Teste'
@@ -168,30 +191,7 @@ class AppointmentControllerIntegrationTests extends GrailsUnitTestCase {
         c.params.put 'empreendimento.id', Building.findByNome('Caimi').id
         c.saveOpen()
 
-        assertTrue mailerService.emailEnviado
-    }
-
-    @Test void save_open_sem_email() {
-        def mailerService = new MailerService() {
-            def emailEnviado = false
-            def enviarEmail (Appointment app){
-                emailEnviado = true
-            }
-        }
-
-        def c = new AppointmentController()
-        c.blandeiroMailerService = mailerService
-        c.params.cliente = 'Teste'
-        c.params.email = null
-        c.params.unidade = '201'
-        c.params.telefone = '43214321'
-        c.params.put 'dataPrevista_year', '2013'
-        c.params.put 'dataPrevista_month', '12'
-        c.params.put 'dataPrevista_day', '30'
-        c.params.put 'empreendimento.id', Building.findByNome('Caimi').id
-        c.saveOpen()
-
-        assertFalse mailerService.emailEnviado
+        assertTrue responsavelNotificado
     }
 
     @Test void show_open() {

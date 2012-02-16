@@ -32,8 +32,7 @@ class AppointmentController {
         if (appointmentInstance.save(flush: true)) {
             flash.message = "${message(code: 'appointment.created.message', args: [message(code: 'appointment.label', default: 'Appointment'), appointmentInstance.cliente])}"
             redirect(action: "show", id: appointmentInstance.id)
-        }
-        else {
+        } else {
             render(view: "create", model: [appointmentInstance: appointmentInstance])
         }
     }
@@ -42,9 +41,7 @@ class AppointmentController {
         def appointmentInstance = new Appointment(params)
         appointmentInstance.fase = AppointmentPhase.SOLICITADO
         if (appointmentInstance.save(flush: true)) {
-            if (appointmentInstance.email)
-                blandeiroMailerService.enviarEmail(appointmentInstance)
-
+            blandeiroMailerService.notificarResponsavel(appointmentInstance)
             flash.message = "${message(code: 'appointment.created.message', args: [message(code: 'appointment.label', default: 'Appointment'), appointmentInstance.cliente])}"
             redirect(action: "showOpen", id: appointmentInstance.id)
         } else {
@@ -63,8 +60,7 @@ class AppointmentController {
     }
 
     def showOpen = {
-        def appointmentInstance = Appointment.get(params.id)
-        [appointmentInstance: appointmentInstance]
+        [appointmentInstance: Appointment.get(params.id)]
     }
 
     def edit = {
@@ -72,8 +68,7 @@ class AppointmentController {
         if (!appointmentInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'appointment.label', default: 'Appointment'), params.id])}"
             redirect(action: "agenda")
-        }
-        else {
+        } else {
             return [appointmentInstance: appointmentInstance]
         }
     }
@@ -93,12 +88,10 @@ class AppointmentController {
             if (!appointmentInstance.hasErrors() && appointmentInstance.save(flush: true)) {
                 flash.message = "${message(code: 'appointment.updated.message', args: [message(code: 'appointment.label', default: 'Appointment'), appointmentInstance.cliente])}"
                 redirect(action: "show", id: appointmentInstance.id)
-            }
-            else {
+            } else {
                 render(view: "edit", model: [appointmentInstance: appointmentInstance])
             }
-        }
-        else {
+        } else {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'appointment.label', default: 'Appointment'), params.id])}"
             redirect(action: "agenda")
         }
@@ -116,8 +109,7 @@ class AppointmentController {
                 flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'appointment.label', default: 'Appointment'), params.id])}"
                 redirect(action: "show", id: params.id)
             }
-        }
-        else {
+        } else {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'appointment.label', default: 'Appointment'), params.id])}"
             redirect(action: "agenda")
         }
@@ -163,14 +155,17 @@ class AppointmentController {
             try {
                 appointmentInstance.fase = AppointmentPhase.CONFIRMADO
                 appointmentInstance.save(flush: true)
+
+                if (appointmentInstance.email)
+                    blandeiroMailerService.notificarCliente(appointmentInstance)
+
                 flash.message = "${message(code: 'appointment.confirmed.message', args: [message(code: 'appointment.label', default: 'Appointment'), appointmentInstance.cliente])}"
                 redirect(action: "agenda")
             } catch (org.springframework.dao.DataIntegrityViolationException e) {
                 flash.message = "${message(code: 'appointment.not.confirmed.message', args: [message(code: 'appointment.label', default: 'Appointment'), params.id])}"
                 redirect(action: "show", id: params.id)
             }
-        }
-        else {
+        } else {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'appointment.label', default: 'Appointment'), params.id])}"
             redirect(action: "agenda")
         }
@@ -188,8 +183,7 @@ class AppointmentController {
                 flash.message = "${message(code: 'appointment.not.resolved.message', args: [message(code: 'appointment.label', default: 'Appointment'), params.id])}"
                 redirect(action: "show", id: params.id)
             }
-        }
-        else {
+        } else {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'appointment.label', default: 'Appointment'), params.id])}"
             redirect(action: "agenda")
         }

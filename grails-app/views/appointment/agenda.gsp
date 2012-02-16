@@ -1,4 +1,3 @@
-
 <%@ page import="br.com.borgeslandeiro.intranet.AppointmentPhase; br.com.borgeslandeiro.intranet.Appointment" %>
 <html>
     <head>
@@ -48,11 +47,11 @@
                             <td><g:formatDate date="${appointmentInstance?.dataPrevista}" format="dd/MM/yyyy"/></td>
                             <td>
                                 <g:if test="${appointmentInstance.fase.equals(AppointmentPhase.SOLICITADO)}">
-                                    <g:link action="confirmar" class="confirmar-btn" id="${appointmentInstance.id}" elementId="confirmar-btn-${appointmentInstance.id}" onclick="return confirm('Deseja confirmar o agendamento');">Confirmar</g:link>
+                                    <g:link action="confirmar" class="confirmar-btn" id="${appointmentInstance.id}" elementId="confirmar-btn-${appointmentInstance.id}" onclick="return confirm('Deseja confirmar o agendamento? (O cliente receberá um email)');">Confirmar</g:link>
                                     <g:link action="edit" class="alterar-btn" id="${appointmentInstance.id}" elementId="alterar-btn-${appointmentInstance.id}" >Alterar</g:link>
                                 </g:if>
                                 <g:elseif test="${appointmentInstance.fase.equals(AppointmentPhase.CONFIRMADO)}">
-                                    <g:link action="resolver" class="resolver-btn" id="${appointmentInstance.id}" elementId="resolver-btn-${appointmentInstance.id}" onclick="return confirm('Deseja resolver o agendamento');">Confirmado</g:link>
+                                    <g:link action="resolver" class="resolver-btn" id="${appointmentInstance.id}" elementId="resolver-btn-${appointmentInstance.id}" onclick="return confirm('Deseja resolver o agendamento?');">Confirmado</g:link>
                                 </g:elseif>
                                 <g:else>
                                     <a href="#" class="resolvido-btn">Resolvido</a>
