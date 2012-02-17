@@ -5,6 +5,7 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="Agendamento" />
         <title><g:message code="default.list.label" args="[entityName]" /></title>
+        <calendar:resources lang="br" theme="tiger"/>
     </head>
     <body>
         <div class="topnav">
@@ -13,15 +14,17 @@
         </div>
         <div class="filter">
             <g:form action="agenda">
-                Empreendimento: <g:select name="empreendimento" noSelection="['': 'Selecione...']" from="${empreendimentos}" optionKey="id" value="${params.empreendimento}"  />
+                Empreendimento: <g:select name="empreendimento" noSelection="['': 'Selecione...']" from="${empreendimentos}" optionKey="id" value="${params.empreendimento}" />
                 &nbsp;&nbsp;&nbsp;
-				Fase: <g:select name="fase" noSelection="['': 'Selecione...']" from="${fases}" optionKey="nome" optionValue="nome" value="${params.fase}"  />
+				Fase: <g:select name="fase" noSelection="['': 'Selecione...']" from="${fases}" optionKey="nome" optionValue="nome" value="${params.fase}" />
+                <br/>
+                Data: <calendar:datePicker name="dataPrevistaInicio" defaultValue="${dataPrevistaInicio}" dateFormat="%d/%m/%Y"/> até: <calendar:datePicker name="dataPrevistaFim" defaultValue="${dataPrevistaFim}" dateFormat="%d/%m/%Y"/>
                 &nbsp;&nbsp;&nbsp;
 				<g:submitButton name="Filtrar" class="btn02"/>
             </g:form>
         </div>
         <div class="body">
-            <h1>Listagem de agendamentos</h1>
+            <h1>Agendamentos</h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -30,11 +33,11 @@
                     <thead>
                         <tr>
                             <g:sortableColumn property="id" title="Id" />
-                            <g:sortableColumn property="cliente" title="Unidade" />
+                            <g:sortableColumn property="empreendimento" title="Unidade" />
                             <g:sortableColumn property="cliente" title="Proprietário" />
                             <g:sortableColumn property="telefone" title="Contato" />
                             <g:sortableColumn property="dataPrevista" title="Data" />
-                            <th></th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>

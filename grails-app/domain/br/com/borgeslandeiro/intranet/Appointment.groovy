@@ -13,6 +13,7 @@ class Appointment {
     AppointmentPhase fase
 
     static constraints = {
+        empreendimento nullable: false
         cliente blank: false, nullable: false, maxSize: 100
         unidade blank: false, nullable: false, maxSize: 30
         telefone blank: false, nullable: false, maxSize: 30
@@ -23,5 +24,9 @@ class Appointment {
 
     String toString(){
         return "${empreendimento.nome} ${unidade} - ${cliente}"
+    }
+
+    static mapping = {
+        sort "dataPrevista"
     }
 }

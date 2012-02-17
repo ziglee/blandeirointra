@@ -131,6 +131,20 @@ class AppointmentController {
             hqlParams.put 'fase', AppointmentPhase.forNome(params.fase)
         }
 
+        def dataPrevistaInicio
+        if (params.dataPrevistaInicio_year) {
+            hql += " and a.dataPrevista >= :dataPrevistaInicio"
+            dataPrevistaInicio = Date.parse('dd/MM/yyyy', "${params.dataPrevistaInicio_day}/${params.dataPrevistaInicio_month}/${params.dataPrevistaInicio_year}")
+            hqlParams.put 'dataPrevistaInicio', dataPrevistaInicio
+        }
+
+        def dataPrevistaFim
+        if (params.dataPrevistaFim_year) {
+            hql += " and a.dataPrevista <= :dataPrevistaFim"
+            dataPrevistaFim = Date.parse('dd/MM/yyyy', "${params.dataPrevistaFim_day}/${params.dataPrevistaFim_month}/${params.dataPrevistaFim_year}")
+            hqlParams.put 'dataPrevistaFim', dataPrevistaFim
+        }
+
         if (params.sort) {
             hql += " order by ${params.sort} "
         } else {
@@ -146,7 +160,7 @@ class AppointmentController {
         def empreendimentos = Building.findAllByResponsavel(session.user).sort{it.nome}
         def fases = AppointmentPhase.values()
 
-        [appointmentInstanceList: lista, appointmentInstanceTotal: count, empreendimentos: empreendimentos, fases: fases]
+        [appointmentInstanceList: lista, appointmentInstanceTotal: count, empreendimentos: empreendimentos, fases: fases, dataPrevistaInicio: dataPrevistaInicio, dataPrevistaFim: dataPrevistaFim]
     }
 
     def confirmar = {

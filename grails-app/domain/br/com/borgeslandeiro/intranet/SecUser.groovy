@@ -23,4 +23,8 @@ class SecUser {
     String toString(){
         nome
     }
+
+    static mapping = {
+        sort "nome"
+    }
 }

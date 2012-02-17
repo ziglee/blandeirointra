@@ -13,7 +13,7 @@
             <span class="menuButton"><g:link class="create" action="create">Novo</g:link></span>
         </div>
         <div class="body">
-            <h1>Lista de empreendimentos</h1>
+            <h1>Empreendimentos</h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -21,9 +21,9 @@
                 <table>
                     <thead>
                         <tr>
-                            <g:sortableColumn property="id" title="${message(code: 'building.id.label', default: 'Id')}" />
-                            <g:sortableColumn property="nome" title="${message(code: 'building.nome.label', default: 'Nome')}" />
-                            <th><g:message code="building.responsavel.label" default="Responsavel" /></th>
+                            <g:sortableColumn property="id" title="Id" />
+                            <g:sortableColumn property="nome" title="Nome" />
+                            <th><g:message code="building.responsavel.label" default="Responsável" /></th>
                         </tr>
                     </thead>
                     <tbody>

@@ -36,7 +36,7 @@
                                     <label for="empreendimento"><g:message code="appointment.empreendimento.label" default="Empreendimento" />:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: appointmentInstance, field: 'empreendimento', 'errors')}">
-                                    <g:select id="empreendimento" name="empreendimento.id"  class="large" noSelection="['-1': 'Selecione...']" from="${br.com.borgeslandeiro.intranet.Building.list()}" optionKey="id" value="${appointmentInstance?.empreendimento?.id}"  />
+                                    <g:select id="empreendimento" name="empreendimento.id"  class="large" noSelection="['': 'Selecione...']" from="${br.com.borgeslandeiro.intranet.Building.list()}" optionKey="id" value="${appointmentInstance?.empreendimento?.id}"  />
                                 </td>
                             </tr>
                             <tr class="prop">

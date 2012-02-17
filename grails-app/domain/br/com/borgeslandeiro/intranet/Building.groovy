@@ -13,4 +13,8 @@ class Building {
     String toString(){
         nome
     }
+
+    static mapping = {
+        sort "nome"
+    }
 }
