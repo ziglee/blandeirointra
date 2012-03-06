@@ -22,39 +22,47 @@
                 <table>
                     <tbody>
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="appointment.cliente.label" default="Proprietário" />:</td>
+                            <td valign="top" class="name">Código:</td>
+                            <td valign="top" class="value">${appointmentInstance?.id}</td>
+                        </tr>
+                        <tr class="prop">
+                            <td valign="top" class="name">Serviço:</td>
+                            <td valign="top" class="value">${appointmentInstance?.servico?.encodeAsHTML()}</td>
+                        </tr>
+                        <tr class="prop">
+                            <td valign="top" class="name">Proprietário:</td>
                             <td valign="top" class="value">${fieldValue(bean: appointmentInstance, field: "cliente")}</td>
                         </tr>
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="appointment.empreendimento.label" default="Empreendimento" />:</td>
+                            <td valign="top" class="name">Empreendimento:</td>
                             <td valign="top" class="value"><g:link controller="building" action="show" id="${appointmentInstance?.empreendimento?.id}">${appointmentInstance?.empreendimento?.encodeAsHTML()}</g:link></td>
                         </tr>
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="appointment.torre.label" default="Torre" />:</td>
+                            <td valign="top" class="name">Torre:</td>
                             <td valign="top" class="value">${fieldValue(bean: appointmentInstance, field: "torre")}</td>
                         </tr>
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="appointment.unidade.label" default="Unidade" />:</td>
+                            <td valign="top" class="name">Unidade:</td>
                             <td valign="top" class="value">${fieldValue(bean: appointmentInstance, field: "unidade")}</td>
                         </tr>
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="appointment.telefone.label" default="Telefone" />:</td>
+                            <td valign="top" class="name">Telefone:</td>
                             <td valign="top" class="value">${fieldValue(bean: appointmentInstance, field: "telefone")}</td>
                         </tr>
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="appointment.email.label" default="Email" />:</td>
+                            <td valign="top" class="name">Email:</td>
                             <td valign="top" class="value">${fieldValue(bean: appointmentInstance, field: "email")}</td>
                         </tr>
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="appointment.observacoes.label" default="Observações" />:</td>
+                            <td valign="top" class="name">Observações:</td>
                             <td valign="top" class="value">${fieldValue(bean: appointmentInstance, field: "observacoes")}</td>
                         </tr>
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="appointment.dataPrevista.label" default="Data Prevista" />:</td>
+                            <td valign="top" class="name">Data Prevista:</td>
                             <td valign="top" class="value"><g:formatDate date="${appointmentInstance?.dataPrevista}" format="dd/MM/yyyy"/></td>
                         </tr>
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="appointment.fase.label" default="Fase" />:</td>
+                            <td valign="top" class="name">Fase:</td>
                             <td valign="top" class="value">${appointmentInstance?.fase?.encodeAsHTML()}</td>
                         </tr>
                     </tbody>

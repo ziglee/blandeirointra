@@ -11,6 +11,7 @@ class Appointment {
     String email
     String observacoes
     AppointmentPhase fase
+    AppointmentType servico
 
     static constraints = {
         empreendimento nullable: false

@@ -126,19 +126,24 @@ class AppointmentController {
             hqlParams.put 'empreendimento', params.long('empreendimento')
         }
 
+        if (params.servico) {
+            hql += " and a.servico = :servico"
+            hqlParams.put 'servico', AppointmentType.forNome(params.servico)
+        }
+
         if (params.fase) {
             hql += " and a.fase = :fase"
             hqlParams.put 'fase', AppointmentPhase.forNome(params.fase)
         }
 
-        def dataPrevistaInicio
+        def dataPrevistaInicio = null
         if (params.dataPrevistaInicio_year) {
             hql += " and a.dataPrevista >= :dataPrevistaInicio"
             dataPrevistaInicio = Date.parse('dd/MM/yyyy', "${params.dataPrevistaInicio_day}/${params.dataPrevistaInicio_month}/${params.dataPrevistaInicio_year}")
             hqlParams.put 'dataPrevistaInicio', dataPrevistaInicio
         }
 
-        def dataPrevistaFim
+        def dataPrevistaFim = null
         if (params.dataPrevistaFim_year) {
             hql += " and a.dataPrevista <= :dataPrevistaFim"
             dataPrevistaFim = Date.parse('dd/MM/yyyy', "${params.dataPrevistaFim_day}/${params.dataPrevistaFim_month}/${params.dataPrevistaFim_year}")

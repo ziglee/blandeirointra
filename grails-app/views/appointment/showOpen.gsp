@@ -16,6 +16,14 @@
                 <table>
                     <tbody>
                         <tr class="prop">
+                            <td valign="top" class="name">Código:</td>
+                            <td valign="top" class="value">${appointmentInstance?.id}</td>
+                        </tr>
+                        <tr class="prop">
+                            <td valign="top" class="name">Serviço:</td>
+                            <td valign="top" class="value">${appointmentInstance?.servico?.encodeAsHTML()}</td>
+                        </tr>
+                        <tr class="prop">
                             <td valign="top" class="name">Proprietário:</td>
                             <td valign="top" class="value">${fieldValue(bean: appointmentInstance, field: "cliente")}</td>
                         </tr>

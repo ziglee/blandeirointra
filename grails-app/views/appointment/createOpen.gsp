@@ -25,6 +25,14 @@
                         <tbody>
                             <tr class="prop">
                                 <td valign="top" class="name">
+                                    <label for="servico"><g:message code="appointment.servico.label" default="Serviço" />:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: appointmentInstance, field: 'servico', 'errors')}">
+                                    <g:select name="servico" from="${br.com.borgeslandeiro.intranet.AppointmentType?.values()}" keys="${br.com.borgeslandeiro.intranet.AppointmentType?.values()*.name()}" value="${appointmentInstance?.servico?.name()}"  />
+                                </td>
+                            </tr>
+                            <tr class="prop">
+                                <td valign="top" class="name">
                                     <label for="cliente"><g:message code="appointment.cliente.label" default="Proprietário" />:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: appointmentInstance, field: 'cliente', 'errors')}">
