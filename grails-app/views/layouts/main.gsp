@@ -3,10 +3,9 @@
     <head>
         <meta charset="utf-8">
         <title><g:layoutTitle default="Borges Landeiro" /></title>
-        <link rel="stylesheet" href="${resource(dir:'css',file:'main.css')}" />
         <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
-        <g:javascript library="jquery" plugin="jquery"/>
-        <g:javascript library="application" />
+        <r:require modules="jquery-ui, style, application"/>
+	    <r:layoutResources/>
         <g:layoutHead />
     </head>
     <body>
@@ -20,6 +19,7 @@
 				</div>
 				<center>									
 					<g:layoutBody />
+					<r:layoutResources/>
 					<br/><br/><br/><br/>
 				</center>
 			</div>

@@ -325,3 +325,11 @@ div.filter{ margin: 0px 0px 20px 0px; background:#DDD; padding:6px; border-radiu
  input.large{ width:400px; } 
  select.large{ width:410px; } 
 textarea.large{ width: 400px; }
+
+.fc-event-status-SOLICITADO {
+    background: yellow;
+}
+
+.fc-event-status-CONFIRMADO {
+    background: red;
+}

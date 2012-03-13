@@ -5,6 +5,7 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'appointment.label', default: 'Appointment')}" />
         <title><g:message code="default.create.label" args="[entityName]" /></title>
+        <r:require modules="fullcalendar"/>
         <calendar:resources lang="br" theme="tiger"/>
         <script src='${resource(dir:"js", file:"appointment.js")}'></script>
     </head>
@@ -33,7 +34,7 @@
                             </tr>
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="cliente"><g:message code="appointment.cliente.label" default="Proprietário" />:</label>
+                                    <label for="cliente">*<g:message code="appointment.cliente.label" default="Proprietário" />:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: appointmentInstance, field: 'cliente', 'errors')}">
                                     <g:textField name="cliente" maxlength="100" value="${appointmentInstance?.cliente}" class="large"/>
@@ -41,7 +42,7 @@
                             </tr>
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="empreendimento"><g:message code="appointment.empreendimento.label" default="Empreendimento" />:</label>
+                                    <label for="empreendimento">*<g:message code="appointment.empreendimento.label" default="Empreendimento" />:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: appointmentInstance, field: 'empreendimento', 'errors')}">
                                     <g:select id="empreendimento" name="empreendimento.id"  class="large" noSelection="['': 'Selecione...']" from="${br.com.borgeslandeiro.intranet.Building.list()}" optionKey="id" value="${appointmentInstance?.empreendimento?.id}"  />
@@ -57,7 +58,7 @@
                             </tr>
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="unidade"><g:message code="appointment.unidade.label" default="Apartamento" />:</label>
+                                    <label for="unidade">*<g:message code="appointment.unidade.label" default="Apartamento" />:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: appointmentInstance, field: 'unidade', 'errors')}">
                                     <g:textField name="unidade" maxlength="30" value="${appointmentInstance?.unidade}"  class="large"/>
@@ -65,7 +66,7 @@
                             </tr>
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="telefone"><g:message code="appointment.telefone.label" default="Telefone" />:</label>
+                                    <label for="telefone">*<g:message code="appointment.telefone.label" default="Telefone" />:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: appointmentInstance, field: 'telefone', 'errors')}">
                                     <g:textField name="telefone" maxlength="30" value="${appointmentInstance?.telefone}"  class="large"/>
@@ -89,10 +90,18 @@
                             </tr>
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="dataPrevista"><g:message code="appointment.dataPrevista.label" default="Data Prevista" />:</label>
+                                    <label for="dataPrevista">*<g:message code="appointment.dataPrevista.label" default="Data Prevista" />:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: appointmentInstance, field: 'dataPrevista', 'errors')}">
-                                    <calendar:datePicker name="dataPrevista" defaultValue="${appointmentInstance?.dataPrevista}" dateFormat="%d/%m/%Y"/>
+                                    <input type="hidden" name="dataPrevista_year" id="dataPrevista_year" value="${params.dataPrevista_year}">
+                                    <input type="hidden" name="dataPrevista_month" id="dataPrevista_month" value="${params.dataPrevista_month}">
+                                    <input type="hidden" name="dataPrevista_day" id="dataPrevista_day" value="${params.dataPrevista_day}">
+                                    <input type="hidden" name="dataPrevista_hour" id="dataPrevista_hour" value="0">
+                                    <input type="hidden" name="dataPrevista_minute" id="dataPrevista_minute" value="0">
+                                    <input type="text" id="dataPrevista_value" name="dataPrevista_value" readonly="true" value="${params.dataPrevista_value}"> 
+                                    <br/>Clique em um dia no calendário
+                                    <br/>
+                                    <div id="calendar"></div>
                                 </td>
                             </tr>
                         </tbody>

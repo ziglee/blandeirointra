@@ -5,7 +5,7 @@ class UserFilters {
         loggedInOnly(controller: 'home', invert: true) {
             before = {
                 if(controllerName && actionName){
-                    if (controllerName.equals('appointment') && (actionName.equals('showOpen') || actionName.equals('createOpen') || actionName.equals('saveOpen')))
+                    if (controllerName.equals('appointment') && (actionName.equals('showOpen') || actionName.equals('createOpen') || actionName.equals('saveOpen') || actionName.equals('listaJson')))
                         return true
                     if (controllerName.equals('building') && actionName.equals('listTorres'))
                         return true

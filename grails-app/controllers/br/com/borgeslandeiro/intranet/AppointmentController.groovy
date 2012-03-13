@@ -1,5 +1,7 @@
 package br.com.borgeslandeiro.intranet
 
+import grails.converters.JSON
+
 class AppointmentController {
 
     def blandeiroMailerService
@@ -206,5 +208,18 @@ class AppointmentController {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'appointment.label', default: 'Appointment'), params.id])}"
             redirect(action: "agenda")
         }
+    }
+
+    def listaJson = {
+        def appointments = []
+        
+        def empreendimento = Building.get(params.long('buildingId'))
+        if (empreendimento) {
+            appointments = Appointment.findAll('from Appointment as ap where ap.empreendimento.id = :buildingId and (ap.fase = :solicitado or ap.fase = :confirmado)', ['buildingId':empreendimento.id, 'solicitado':AppointmentPhase.SOLICITADO, 'confirmado':AppointmentPhase.CONFIRMADO])            
+        }
+
+        render appointments.collect{ row ->
+            [id: row.id, dataPrevista: row.dataPrevista.format("yyyy-MM-dd"), fase: row.fase.name()]
+        } as JSON           
     }
 }
