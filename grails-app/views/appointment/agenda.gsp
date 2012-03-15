@@ -17,10 +17,14 @@
                 Empreendimento: <g:select name="empreendimento" noSelection="['': 'Selecione...']" from="${empreendimentos}" optionKey="id" value="${params.empreendimento}" />
                 &nbsp;&nbsp;&nbsp;
 				Fase: <g:select name="fase" noSelection="['': 'Selecione...']" from="${fases}" optionKey="nome" optionValue="nome" value="${params.fase}" />
-                <br/>
-                Data: <calendar:datePicker name="dataPrevistaInicio" defaultValue="${dataPrevistaInicio}" dateFormat="%d/%m/%Y"/> até: <calendar:datePicker name="dataPrevistaFim" defaultValue="${dataPrevistaFim}" dateFormat="%d/%m/%Y"/>
-                &nbsp;&nbsp;&nbsp;
-				<g:submitButton name="Filtrar" class="btn02"/>
+                <br/>                                
+				<div class="datacontainer">
+					Data:
+					<calendar:datePicker name="dataPrevistaInicio" defaultValue="${dataPrevistaInicio}" dateFormat="%d/%m/%Y"/> até: 
+					<calendar:datePicker name="dataPrevistaFim" defaultValue="${dataPrevistaFim}" dateFormat="%d/%m/%Y"/>
+					&nbsp;&nbsp;&nbsp;
+					<g:submitButton name="Filtrar" class="btn02"/>
+				</div>                
             </g:form>
         </div>
         <div class="body">

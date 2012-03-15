@@ -13,15 +13,14 @@
 			<div id="spinner" class="spinner" style="display:none;">
 				<img src="${resource(dir:'images',file:'spinner.gif')}" alt="${message(code:'spinner.alt',default:'Loading...')}" />
 			</div>			
-			<div class="box" style="margin-top:15px;">
+			<div class="box" style="margin-top:15px;padding-left:30px">
 				<div id="grailsLogo">
 					<g:link controller="home" action="indexHome"><img src="${resource(dir:'images',file:'bl_logo.png')}" alt="Grails" border="0" /></g:link>
 				</div>
-				<center>									
-					<g:layoutBody />
-					<r:layoutResources/>
-					<br/><br/><br/><br/>
-				</center>
+													
+				<g:layoutBody />
+				<r:layoutResources/>
+				<br/><br/><br/><br/>
 			</div>
 		</div>
     </body>
