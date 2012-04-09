@@ -74,7 +74,7 @@
                             </tr>
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="email"><g:message code="appointment.email.label" default="Email" />:</label>
+                                    <label for="email">*<g:message code="appointment.email.label" default="Email" />:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: appointmentInstance, field: 'email', 'errors')}">
                                     <g:textField name="email" maxlength="50" value="${appointmentInstance?.email}"  class="large"/>
