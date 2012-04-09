@@ -8,6 +8,12 @@
         <r:require modules="fullcalendar"/>
         <calendar:resources lang="br" theme="tiger"/>
         <script src='${resource(dir:"js", file:"appointment.js")}'></script>
+        <script src='${resource(dir:"js", file:"jquery.maskedinput-1.1.4.pack.js")}'></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#telefone").mask("(99) 9999-9999");
+            });
+        </script>
     </head>
     <body>
         <div class="topnav">
@@ -73,7 +79,7 @@
                                     <label for="telefone">*<g:message code="appointment.telefone.label" default="Telefone" />:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: appointmentInstance, field: 'telefone', 'errors')}">
-                                    <g:textField name="telefone" maxlength="30" value="${appointmentInstance?.telefone}"  class="large"/>
+                                    <g:textField name="telefone" maxlength="30" value="${appointmentInstance?.telefone}" id="telefone" class="large"/>
                                 </td>
                             </tr>
                             <tr class="prop">
