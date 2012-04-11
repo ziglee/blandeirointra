@@ -34,10 +34,10 @@
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         
                             <td><g:link action="show" id="${appointmentInstance.id}">${fieldValue(bean: appointmentInstance, field: "id")}</g:link></td>
-                            <td>${fieldValue(bean: appointmentInstance, field: "empreendimento.nome")}</td>
-                            <td>${fieldValue(bean: appointmentInstance, field: "cliente")}</td>
-                            <td>${fieldValue(bean: appointmentInstance, field: "telefone")}</td>
-                            <td><g:formatDate date="${appointmentInstance?.dataPrevista}" format="dd/MM/yyyy"/></td>
+                            <td><g:link action="show" id="${appointmentInstance.id}">${fieldValue(bean: appointmentInstance, field: "empreendimento.nome")}</g:link></td>
+                            <td><g:link action="show" id="${appointmentInstance.id}">${fieldValue(bean: appointmentInstance, field: "cliente")}</g:link></td>
+                            <td><g:link action="show" id="${appointmentInstance.id}">${fieldValue(bean: appointmentInstance, field: "telefone")}</g:link></td>
+                            <td><g:link action="show" id="${appointmentInstance.id}"><g:formatDate date="${appointmentInstance?.dataPrevista}" format="dd/MM/yyyy"/></g:link></td>
                             <td>${fieldValue(bean: appointmentInstance, field: "fase")}</td>
                         </tr>
                     </g:each>

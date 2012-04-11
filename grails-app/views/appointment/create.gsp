@@ -118,10 +118,12 @@
                                 <td valign="top" class="name">
                                     <label for="fase"><g:message code="appointment.fase.label" default="Fase" />:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean: appointmentInstance, field: 'fase', 'errors')}">
+                                <td valign="bottom" class="value ${hasErrors(bean: appointmentInstance, field: 'fase', 'errors')}">
                                     <g:select name="fase" from="${br.com.borgeslandeiro.intranet.AppointmentPhase?.values()}" keys="${br.com.borgeslandeiro.intranet.AppointmentPhase?.values()*.name()}" value="${appointmentInstance?.fase?.name()}"  />
-                                </td>
-                            </tr>
+									<div class="fase_legenda" style="background:yellow">&nbsp;&nbsp;&nbsp;</div><span style="margin-top:5px;">Solicitado</span>
+									<div class="fase_legenda" style="background:blue">&nbsp;&nbsp;&nbsp;</div><span style="margin-top:5px;">Confirmado</span>
+								</td>
+                            </tr>							
                         </tbody>
                     </table>
                 </div>

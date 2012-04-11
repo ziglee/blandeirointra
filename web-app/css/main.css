@@ -324,10 +324,7 @@ select.large{ width:410px; }
 textarea.large{ width: 400px; }
 div.datacontainer input{ width: 75px; }
 
-.fc-event-status-SOLICITADO {
-    background: yellow;
-}
+.fc-event-status-SOLICITADO { background: yellow; width: 15px !important; }
+.fc-event-status-CONFIRMADO { background: blue; width: 15px !important; }
 
-.fc-event-status-CONFIRMADO {
-    background: red;
-}
+.fase_legenda{ width:30px; height:30px; background:#FFF; border:1px solid #666; display:inline; margin:0px 5px; }
