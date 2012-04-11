@@ -105,9 +105,13 @@
                                     <input type="hidden" name="dataPrevista_hour" id="dataPrevista_hour" value="0">
                                     <input type="hidden" name="dataPrevista_minute" id="dataPrevista_minute" value="0">
                                     <input type="text" id="dataPrevista_value" name="dataPrevista_value" readonly="true" value="${params.dataPrevista_value}"> 
-                                    <br/>Clique em um dia no calendário
-                                    <br/>
+                                    &nbsp;&nbsp;<span style="color:#666">*Clique em um dia no calendário</span>
+                                    <br/><br/>
                                     <div id="calendar"></div>
+									<br/>
+									Legenda:
+									<div class="fase_legenda" style="background:yellow">&nbsp;&nbsp;&nbsp;</div><span style="margin-top:5px;">Solicitado</span>
+									<div class="fase_legenda" style="background:blue">&nbsp;&nbsp;&nbsp;</div><span style="margin-top:5px;">Confirmado</span>
                                 </td>
                             </tr>
                         </tbody>
