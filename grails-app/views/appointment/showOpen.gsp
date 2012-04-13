@@ -5,6 +5,13 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="Agendamento" />
         <title>Agendar visita</title>
+		<script>
+			function closeWindow() {
+				netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserWrite");				
+				window.open('','_self');
+				window.close();
+			}
+		</script>
     </head>
     <body>
         <div class="body">
@@ -53,9 +60,11 @@
                         <tr class="prop">
                             <td valign="top" class="name">Data Prevista:</td>
                             <td valign="top" class="value"><g:formatDate date="${appointmentInstance?.dataPrevista}" format="dd/MM/yyyy"/></td>
-                        </tr>
+                        </tr>						
                     </tbody>
                 </table>
+				<br/><br/>
+				<center><a href="http://www.borgeslandeiro.com.br" class="btn01" target="_self">Fechar</a></center>
             </div>
         </div>
     </body>
