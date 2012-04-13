@@ -106,7 +106,7 @@
                                   <label for="dataPrevista">*<g:message code="appointment.dataPrevista.label" default="Data Prevista" />:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: appointmentInstance, field: 'dataPrevista', 'errors')}">
-                                    <calendar:datePicker name="dataPrevista" defaultValue="${appointmentInstance?.dataPrevista}" dateFormat="%d/%m/%Y"/>
+                                    <calendar:datePicker name="dataPrevista" defaultValue="${appointmentInstance?.dataPrevista}" dateFormat="%d/%m/%Y %H:%M" timeFormat="24" showTime="true"/>
                                 </td>
                             </tr>
                             <tr class="prop">

@@ -51,7 +51,7 @@
                             <td><g:link action="show" id="${appointmentInstance.id}">${fieldValue(bean: appointmentInstance, field: "empreendimento.nome")}</g:link></td>
                             <td><g:link action="show" id="${appointmentInstance.id}">${fieldValue(bean: appointmentInstance, field: "cliente")}</g:link></td>
                             <td><g:link action="show" id="${appointmentInstance.id}">${fieldValue(bean: appointmentInstance, field: "telefone")}</g:link></td>
-                            <td><g:link action="show" id="${appointmentInstance.id}"><g:formatDate date="${appointmentInstance?.dataPrevista}" format="dd/MM/yyyy"/></g:link></td>
+                            <td><g:link action="show" id="${appointmentInstance.id}"><g:formatDate date="${appointmentInstance?.dataPrevista}" format="dd/MM/yyyy HH:mm"/></g:link></td>
                             <td>
                                 <g:if test="${appointmentInstance.fase.equals(AppointmentPhase.SOLICITADO)}">
                                     <g:link action="confirmar" class="confirmar-btn" id="${appointmentInstance.id}" elementId="confirmar-btn-${appointmentInstance.id}" onclick="return confirm('Deseja confirmar o agendamento? (O cliente receberá um email)');">Confirmar</g:link>
