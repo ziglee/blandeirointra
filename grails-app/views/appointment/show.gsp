@@ -59,7 +59,7 @@
                         </tr>
                         <tr class="prop">
                             <td valign="top" class="name">Data Prevista:</td>
-                            <td valign="top" class="value"><g:formatDate date="${appointmentInstance?.dataPrevista}" format="dd/MM/yyyy"/></td>
+                            <td valign="top" class="value"><g:formatDate date="${appointmentInstance?.dataPrevista}" format="dd/MM/yyyy HH:mm"/></td>
                         </tr>
                         <tr class="prop">
                             <td valign="top" class="name">Fase:</td>
