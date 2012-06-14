@@ -26,7 +26,8 @@ class AppointmentController {
     def createOpen = {
         def appointmentInstance = new Appointment()
         appointmentInstance.properties = params
-        return [appointmentInstance: appointmentInstance]
+        def time = ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00']
+        return [appointmentInstance: appointmentInstance, time: time]
     }
 
     def save = {
@@ -40,6 +41,9 @@ class AppointmentController {
     }
 
     def saveOpen = {
+        String time = params.dataPrevista_time
+        params.dataPrevista_hour = time.split(':')[0]
+        params.dataPrevista_minute = time.split(':')[1]
         def appointmentInstance = new Appointment(params)
         appointmentInstance.fase = AppointmentPhase.SOLICITADO
         if (appointmentInstance.save(flush: true)) {
@@ -219,7 +223,7 @@ class AppointmentController {
         }
 
         render appointments.collect{ row ->
-            [id: row.id, dataPrevista: row.dataPrevista.format("yyyy-MM-dd"), fase: row.fase.name()]
+            [id: row.id, dataPrevista: row.dataPrevista.toTimestamp(), hora: row.dataPrevista.format("HH"), minuto: row.dataPrevista.format("mm"), fase: row.fase.name()]
         } as JSON           
     }
 }

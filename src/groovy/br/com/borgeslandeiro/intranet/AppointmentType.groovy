@@ -2,8 +2,10 @@ package br.com.borgeslandeiro.intranet
 
 public enum AppointmentType {
 
-    ENTREGA(1,'Entrega'),
-    MEDICAO(2,'Medição')
+    VISITA_POS_OBRA(1,'Visita pós-obra'),
+    VISITA_DE_MEDICAO(2,'Visita de medição'),
+    AVALIACAO_DE_IMOVEL(3,'Avaliação de imóvel'),
+    ATENDIMENTO(4,'Atendimento')
 
     final Integer id
     final String nome

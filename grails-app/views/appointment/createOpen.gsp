@@ -103,7 +103,7 @@
                                     <input type="hidden" name="dataPrevista_month" id="dataPrevista_month" value="${params.dataPrevista_month}">
                                     <input type="hidden" name="dataPrevista_day" id="dataPrevista_day" value="${params.dataPrevista_day}">
                                     <input type="text" id="dataPrevista_value" name="dataPrevista_value" readonly="true" value="${params.dataPrevista_value}">
-                                    <input type="text" name="dataPrevista_hour" id="dataPrevista_hour" value="${params.dataPrevista_hour}" class="horas_minutos" maxlength="2">:<input type="text" name="dataPrevista_minute" id="dataPrevista_minute" value="${params.dataPrevista_minute}" class="horas_minutos" maxlength="2">
+                                    <g:select name="dataPrevista_time" value="${params.dataPrevista_time}" from="${time}"/>
                                     &nbsp;&nbsp;<span style="color:#666">*Clique em um dia no calendário</span>
                                     <br/><br/>
                                     <div id="calendar"></div>
