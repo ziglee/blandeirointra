@@ -216,14 +216,14 @@ class AppointmentController {
 
     def listaJson = {
         def appointments = []
-        
+
         def empreendimento = Building.get(params.long('buildingId'))
         if (empreendimento) {
             appointments = Appointment.findAll('from Appointment as ap where ap.empreendimento.id = :buildingId and (ap.fase = :solicitado or ap.fase = :confirmado)', ['buildingId':empreendimento.id, 'solicitado':AppointmentPhase.SOLICITADO, 'confirmado':AppointmentPhase.CONFIRMADO])            
         }
 
         render appointments.collect{ row ->
-            [id: row.id, dataPrevista: row.dataPrevista.toTimestamp(), hora: row.dataPrevista.format("HH"), minuto: row.dataPrevista.format("mm"), fase: row.fase.name()]
+            [id: row.id, dataPrevista: row.dataPrevista.format('yyyy-MM-dd') + 'T' + row.dataPrevista.format('HH:mm:ss') + 'Z', hora: row.dataPrevista.format("HH"), minuto: row.dataPrevista.format("mm"), fase: row.fase.name()]
         } as JSON           
     }
 }
