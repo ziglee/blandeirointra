@@ -42,8 +42,14 @@ class AppointmentController {
 
     def saveOpen = {
         String time = params.dataPrevista_time
-        params.dataPrevista_hour = time.split(':')[0]
-        params.dataPrevista_minute = time.split(':')[1]
+        if (time) {
+            params.dataPrevista_hour = time.split(':')[0]
+            params.dataPrevista_minute = time.split(':')[1]
+        } else {
+            params.dataPrevista_hour = "08"
+            params.dataPrevista_minute = "00"
+        }
+        
         def appointmentInstance = new Appointment(params)
         appointmentInstance.fase = AppointmentPhase.SOLICITADO
         if (appointmentInstance.save(flush: true)) {
